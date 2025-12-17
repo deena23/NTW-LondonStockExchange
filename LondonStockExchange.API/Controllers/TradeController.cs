@@ -1,9 +1,11 @@
 ﻿using LondonStockExchange.Models;
 using LondonStockExchange.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LondonStockExchange.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/trades")]
     public class TradeController : ControllerBase

@@ -23,21 +23,21 @@ configuration.Bind(configurationItem);
 
 builder.Services.Configure<ConfigurationItem>(configuration);
 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-//        {
-//            ValidateIssuer = true,
-//            ValidateAudience = true,
-//            ValidateLifetime = true,
-//            ValidateIssuerSigningKey = true,
-//            ValidIssuer = configurationItem.JwTAuthentication.Issuer,
-//            ValidAudience = configurationItem.JwTAuthentication.Audience,
-//            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configurationItem.JwTAuthentication.SecretKey))
-//        };
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = configurationItem.JwTAuthentication.Issuer,
+            ValidAudience = configurationItem.JwTAuthentication.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configurationItem.JwTAuthentication.SecretKey))
+        };
 
-//    });
+    });
 
 builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<IStockRepository, StockRepository>();
