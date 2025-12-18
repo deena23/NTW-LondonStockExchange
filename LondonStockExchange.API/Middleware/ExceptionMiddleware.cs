@@ -24,7 +24,7 @@ namespace LondonStockExchange.Middleware
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Unhandled exception");
+                _logger.LogError($"Error Occured While Processing Request: {ex}");
                 await HandleException(context, ex);
             }
         }

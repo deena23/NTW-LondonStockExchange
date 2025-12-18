@@ -12,11 +12,13 @@ namespace LondonStockExchange.Controllers
     {
         #region Private Properties
         private readonly ITradeService _tradeService;
+        private readonly ILogger<TradeController> _logger;
         #endregion
 
         #region Constructor
-        public TradeController(ITradeService tradeService) { 
+        public TradeController(ITradeService tradeService, ILogger<TradeController> logger) { 
             this._tradeService = tradeService;
+            this._logger = logger;
         }
         #endregion
 
@@ -29,6 +31,7 @@ namespace LondonStockExchange.Controllers
         [HttpPost("ReceiveTrade")]
         public async Task<ActionResult<bool>> ReceiveTrade([FromBody] TradeDetails tradeDetails)
         {
+            _logger.LogInformation(string.Format("Started Trade Process with: {0}", tradeDetails.ToString()));
             bool isReceived = await _tradeService.ReceiveTrade(tradeDetails);
             return Ok(isReceived);
         }
