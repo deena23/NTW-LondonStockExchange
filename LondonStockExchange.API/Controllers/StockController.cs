@@ -6,10 +6,17 @@ namespace LondonStockExchange.Controllers
 {
     [ApiController]
     [Route("api/stocks")]
-    public class StockController(IStockService stockService) : ControllerBase
+    public class StockController : ControllerBase
     {
         #region Private Properties
-        private readonly IStockService _stockService = stockService;
+        private readonly IStockService _stockService;
+        #endregion
+
+        #region Constructor
+        public StockController(IStockService stockService) 
+        { 
+            this._stockService = stockService;
+        }
         #endregion
 
         #region Public Methods
